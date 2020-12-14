@@ -1,0 +1,8 @@
+prefix=/home/nvidia/catkin2_ws/devel
+
+Name: lpms_imu
+Description: Description of lpms_imu
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: timesync

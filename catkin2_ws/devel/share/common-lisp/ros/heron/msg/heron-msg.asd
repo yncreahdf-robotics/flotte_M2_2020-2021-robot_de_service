@@ -1,0 +1,23 @@
+
+(cl:in-package :asdf)
+
+(defsystem "heron-msg"
+  :depends-on (:roslisp-msg-protocol :roslisp-utils )
+  :components ((:file "_package")
+    (:file "Battery" :depends-on ("_package_Battery"))
+    (:file "_package_Battery" :depends-on ("_package"))
+    (:file "Encoders" :depends-on ("_package_Encoders"))
+    (:file "_package_Encoders" :depends-on ("_package"))
+    (:file "IRSensors" :depends-on ("_package_IRSensors"))
+    (:file "_package_IRSensors" :depends-on ("_package"))
+    (:file "Motion" :depends-on ("_package_Motion"))
+    (:file "_package_Motion" :depends-on ("_package"))
+    (:file "USIRSensors" :depends-on ("_package_USIRSensors"))
+    (:file "_package_USIRSensors" :depends-on ("_package"))
+    (:file "ValueUnitFloat" :depends-on ("_package_ValueUnitFloat"))
+    (:file "_package_ValueUnitFloat" :depends-on ("_package"))
+    (:file "ValueUnitInt" :depends-on ("_package_ValueUnitInt"))
+    (:file "_package_ValueUnitInt" :depends-on ("_package"))
+    (:file "winch" :depends-on ("_package_winch"))
+    (:file "_package_winch" :depends-on ("_package"))
+  ))

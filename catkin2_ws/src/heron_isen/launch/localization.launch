@@ -1,0 +1,9 @@
+<launch>
+
+
+<node pkg="rosservice" type="rosservice" name="global loc" args="call --wait /global_localization"/>
+<node pkg="rosservice" type="rosservice" name="no_motion_update" args="call --wait /request_nomotion_update"/>
+
+</launch>
+
+
