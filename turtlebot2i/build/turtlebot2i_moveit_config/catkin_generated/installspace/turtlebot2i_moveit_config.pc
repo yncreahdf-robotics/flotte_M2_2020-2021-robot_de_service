@@ -1,0 +1,8 @@
+prefix=/home/turtlebot/turtlebot2i/install
+
+Name: turtlebot2i_moveit_config
+Description: Description of turtlebot2i_moveit_config
+Version: 0.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
