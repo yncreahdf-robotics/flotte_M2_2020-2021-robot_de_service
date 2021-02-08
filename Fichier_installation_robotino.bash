@@ -1,5 +1,3 @@
-# flotte_M2_2020-2021-robot_de_service
-
 #!/bin/bash
 
 sudo apt install robotino-api2
