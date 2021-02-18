@@ -1,8 +1,0 @@
-prefix=/root/workspace/catkin_ws/devel/.private/heron
-
-Name: heron
-Description: Description of heron
-Version: 0.0.0
-Cflags: -I/root/workspace/catkin_ws/devel/.private/heron/include
-Libs: -L${prefix}/lib 
-Requires: roscpp rospy std_msgs message_runtime

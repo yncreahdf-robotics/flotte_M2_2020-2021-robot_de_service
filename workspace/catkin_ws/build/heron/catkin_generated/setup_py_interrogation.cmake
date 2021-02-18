@@ -1,6 +1,0 @@
-set(heron_SETUP_PY_VERSION "0.0.0")
-set(heron_SETUP_PY_SCRIPTS "")
-set(heron_SETUP_PY_PACKAGES "heron")
-set(heron_SETUP_PY_PACKAGE_DIRS "heron")
-set(heron_SETUP_PY_MODULES "")
-set(heron_SETUP_PY_MODULE_DIRS "")

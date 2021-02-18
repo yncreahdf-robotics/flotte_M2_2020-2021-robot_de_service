@@ -1,2 +1,0 @@
-robotino_description:robotino_isen:robotino_local_move:robotino_local_planner:robotino_msgs:robotino_navigation:robotino_node:robotino_rest_node:robotino_safety:robotino_teleop
--DCATKIN_DEVEL_PREFIX=/home/robotino/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/robotino/catkin_ws/install -G Unix Makefiles
