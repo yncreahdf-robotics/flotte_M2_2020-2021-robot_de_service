@@ -47,3 +47,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/turtlebot_isen" TYPE FILE FILES "/home/turtlebot/turtlebot2i/src/turtlebot_isen/package.xml")
 endif()
 
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/turtlebot_isen" TYPE PROGRAM FILES "/home/turtlebot/turtlebot2i/build/turtlebot_isen/catkin_generated/installspace/kobuki_battery.py")
+endif()
+

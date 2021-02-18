@@ -1,0 +1,8 @@
+prefix=/home/turtlebot/turtlebot2i/devel
+
+Name: turtlebot_isen_msgs
+Description: Description of turtlebot_isen_msgs
+Version: 0.0.0
+Cflags: -I/home/turtlebot/turtlebot2i/devel/include
+Libs: -L${prefix}/lib 
+Requires: std_msgs message_runtime
