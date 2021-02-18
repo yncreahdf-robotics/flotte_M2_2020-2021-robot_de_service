@@ -13,6 +13,10 @@ First clone this repository :
 
 ### Step 2:
 
+Change the branch:
+
+	git checkout robotino
+
 Build the installation:
 
     ./installation.bash
