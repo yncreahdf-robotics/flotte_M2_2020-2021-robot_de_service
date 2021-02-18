@@ -1,8 +1,0 @@
-prefix=/home/nvidia/catkin2_ws/devel
-
-Name: test_move
-Description: Description of test_move
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

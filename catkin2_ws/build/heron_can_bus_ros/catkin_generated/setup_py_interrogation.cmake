@@ -1,6 +1,0 @@
-set(heron_can_bus_ros_SETUP_PY_VERSION "0.0.0")
-set(heron_can_bus_ros_SETUP_PY_SCRIPTS "")
-set(heron_can_bus_ros_SETUP_PY_PACKAGES "heron_can_bus_py")
-set(heron_can_bus_ros_SETUP_PY_PACKAGE_DIRS "heron_can_bus_py")
-set(heron_can_bus_ros_SETUP_PY_MODULES "")
-set(heron_can_bus_ros_SETUP_PY_MODULE_DIRS "")

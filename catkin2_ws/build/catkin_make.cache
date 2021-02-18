@@ -1,2 +1,0 @@
-coulomb_counter_cc75_ros:heron_can_bus_ros:heron_isen:heron_navigation:heron_software:laser_filters:lpms_imu:rplidar_ros:serial:ti_mmwave_rospkg:timesync_ros
--DCATKIN_DEVEL_PREFIX=/home/nvidia/catkin2_ws/devel -DCMAKE_INSTALL_PREFIX=/home/nvidia/catkin2_ws/install -G Unix Makefiles

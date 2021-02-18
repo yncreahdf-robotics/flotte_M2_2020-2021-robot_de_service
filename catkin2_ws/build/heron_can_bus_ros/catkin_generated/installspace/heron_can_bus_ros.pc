@@ -1,8 +1,0 @@
-prefix=/home/nvidia/catkin2_ws/install
-
-Name: heron_can_bus_ros
-Description: Description of heron_can_bus_ros
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: rospy sensor_msgs
