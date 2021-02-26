@@ -26,7 +26,7 @@
   <!-- Authors do not have to be maintainers, but could be -->
   <!-- Example: -->
   <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
-
+       <url type="GitHub">https://github.com/Gillou100/coulomb_counter_cc75_ros</url>
 
   <!-- The *depend tags are used to specify dependencies -->
   <!-- Dependencies can be catkin packages or system dependencies -->
@@ -72,6 +72,7 @@
   <exec_depend>message_runtime</exec_depend>
   <exec_depend>nav_msgs</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
+
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

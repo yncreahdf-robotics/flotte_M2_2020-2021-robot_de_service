@@ -16,10 +16,11 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   nav_msgs
   tf
+
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+#find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -52,10 +53,14 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
- #add_message_files(
-  # FILES
+add_message_files(
+	FILES
+#   Message1.msg
 #   Message2.msg
-#)
+	Coulomb_counter_cc75.msg
+	ValueUnitInt.msg
+	ValueUnitFloat.msg
+)
 
 ## Generate services in the 'srv' folder
  #add_service_files(
@@ -76,6 +81,7 @@ find_package(catkin REQUIRED COMPONENTS
    std_msgs
    nav_msgs
    geometry_msgs
+
  )
 
 ################################################
@@ -169,7 +175,7 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
  catkin_install_python(PROGRAMS
-   scripts/moveToGoal.py
+   scripts/moveSuperviseur.py
    scripts/saveCoordinate.py
    scripts/RobotsInitReception.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

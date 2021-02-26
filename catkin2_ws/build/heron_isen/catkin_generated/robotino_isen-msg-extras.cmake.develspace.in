@@ -1,0 +1,2 @@
+set(robotino_isen_MESSAGE_FILES "")
+set(robotino_isen_SERVICE_FILES "")

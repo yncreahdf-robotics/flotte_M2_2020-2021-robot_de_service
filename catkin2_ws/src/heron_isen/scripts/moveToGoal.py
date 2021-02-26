@@ -115,3 +115,4 @@ if __name__ == '__main__':
         MoveToGoal()
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation finished.")
+

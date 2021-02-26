@@ -1,0 +1,2 @@
+set(heron_MESSAGE_FILES "/home/nvidia/catkin2_ws/src/heron_software/msg/ValueUnitFloat.msg;/home/nvidia/catkin2_ws/src/heron_software/msg/ValueUnitInt.msg;/home/nvidia/catkin2_ws/src/heron_software/msg/IRSensors.msg;/home/nvidia/catkin2_ws/src/heron_software/msg/USIRSensors.msg;/home/nvidia/catkin2_ws/src/heron_software/msg/winch.msg;/home/nvidia/catkin2_ws/src/heron_software/msg/Motion.msg;/home/nvidia/catkin2_ws/src/heron_software/msg/Encoders.msg")
+set(heron_SERVICE_FILES "")

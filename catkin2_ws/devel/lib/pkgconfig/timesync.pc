@@ -1,0 +1,8 @@
+prefix=/home/nvidia/catkin2_ws/devel
+
+Name: timesync
+Description: Description of timesync
+Version: 1.0.0
+Cflags: -I/home/nvidia/catkin2_ws/devel/include -I/home/nvidia/catkin2_ws/src/timesync_ros/include
+Libs: -L${prefix}/lib -ltimesync
+Requires: dynamic_reconfigure roscpp message_runtime

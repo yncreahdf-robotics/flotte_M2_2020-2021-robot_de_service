@@ -1,0 +1,2 @@
+set(heron_navigation_MESSAGE_FILES "")
+set(heron_navigation_SERVICE_FILES "")

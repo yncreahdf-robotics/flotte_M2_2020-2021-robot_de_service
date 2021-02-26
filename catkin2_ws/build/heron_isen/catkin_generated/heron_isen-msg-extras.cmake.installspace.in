@@ -1,0 +1,2 @@
+set(heron_isen_MESSAGE_FILES "msg/Coulomb_counter_cc75.msg;msg/ValueUnitInt.msg;msg/ValueUnitFloat.msg")
+set(heron_isen_SERVICE_FILES "")

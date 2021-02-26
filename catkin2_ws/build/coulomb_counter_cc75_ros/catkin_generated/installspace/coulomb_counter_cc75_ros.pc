@@ -1,0 +1,8 @@
+prefix=/home/nvidia/catkin2_ws/install
+
+Name: coulomb_counter_cc75_ros
+Description: Description of coulomb_counter_cc75_ros
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs message_runtime

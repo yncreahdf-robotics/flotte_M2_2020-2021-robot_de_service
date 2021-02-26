@@ -1,0 +1,5 @@
+<launch>
+  <node name="coulomb_counter_cc75_manager" pkg="coulomb_counter_cc75_ros" type="coulomb_counter_cc75_rosnode.py" output="log">
+    <param name="portUSB" value="/dev/"/>
+  </node>
+</launch>
