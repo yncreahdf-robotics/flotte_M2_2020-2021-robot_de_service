@@ -10,15 +10,17 @@ from actionlib_msgs.msg import GoalStatus
 from geometry_msgs.msg import Pose, Quaternion
 from tf.transformations import quaternion_from_euler
 
-turnAngle = 45
-turnAngle = Quaternion(*(quaternion_from_euler(0, 0, turnAngle*math.pi/180, axes='sxyz')))
-
 class Turn():
-    pose = (0, 0, 0, 0)
+    pose = tuple()
+    turnAngle = 45
     def __init__(self):
 
-        rospy.init_node('turn')
+        pass
+#        rospy.init_node('turn')
 
+    def startRotate(self):
+        #self.turnAngle = Quaternion(*(quaternion_from_euler(0, 0, self.turnAngle*math.pi/180, axes='sxyz')))
+        print("turn")
         currentPose = tf.TransformListener()
 
         rate = rospy.Rate(1.0)
@@ -27,7 +29,7 @@ class Turn():
             try:
                 (linear, rotation) = currentPose.lookupTransform(
                     '/map', '/base_link', rospy.Time(0))
-                self.pose = (linear[0], linear[1], rotation[2] + turnAngle.z, rotation[3] + turnAngle.w)
+                self.pose = (linear[0], linear[1], rotation[2] + self.turnAngle.z, rotation[3] + self.turnAngle.w)
             except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
                 continue
             count += 1
@@ -39,7 +41,7 @@ class Turn():
         wait = self.client.wait_for_server()
         if not wait:
             rospy.logerr("Action server not available!")
-            rospy.signal_shutdown("Action server not available!")
+            #rospy.signal_shutdown("Action server not available!")
             return
 
         rospy.loginfo("Connected to move base server")
@@ -69,15 +71,15 @@ class Turn():
         if status == 4:
             rospy.loginfo("Goal pose "+str(1) +
                           " was aborted by the Action Server")
-            rospy.signal_shutdown(
-                "Goal pose "+str(1)+" aborted, shutting down!")
+            #rospy.signal_shutdown(
+             #   "Goal pose "+str(1)+" aborted, shutting down!")
             return
 
         if status == 5:
             rospy.loginfo("Goal pose "+str(1) +
                           " has been rejected by the Action Server")
-            rospy.signal_shutdown(
-                "Goal pose "+str(1)+" rejected, shutting down!")
+            #rospy.signal_shutdown(
+              #  "Goal pose "+str(1)+" rejected, shutting down!")
             return
 
         if status == 8:
@@ -96,12 +98,14 @@ class Turn():
                       str(1)+" to Action Server")
         self.client.send_goal(goal, self.done_cb,
                               self.active_cb, self.feedback_cb)
-       # rospy.spin()
+        rospy.spin()
 
 
 if __name__ == '__main__':
     try:
-        Turn()
+ #       pass
+        t = Turn()
+        t.startRotate()
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation finished.")
 

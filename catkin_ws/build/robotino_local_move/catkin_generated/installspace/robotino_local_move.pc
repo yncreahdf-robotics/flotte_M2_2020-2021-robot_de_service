@@ -1,0 +1,8 @@
+prefix=/home/robotino/catkin_ws/install
+
+Name: robotino_local_move
+Description: Description of robotino_local_move
+Version: 0.1.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: actionlib actionlib_msgs geometry_msgs nav_msgs robotino_node std_msgs tf robotino_msgs

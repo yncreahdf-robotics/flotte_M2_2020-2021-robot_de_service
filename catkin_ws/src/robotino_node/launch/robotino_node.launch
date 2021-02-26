@@ -1,5 +1,5 @@
 <launch>
-    <arg name="hostname" default="192.168.2.1" />
+    <arg name="hostname" default="127.0.1.1" />
 	<node name="robotino_node" pkg="robotino_node" type="robotino_node" output="screen">
 		<param name="hostname" value="$(arg hostname)" />
 		<param name="max_linear_vel" value="0.7" />
@@ -9,6 +9,15 @@
 		<remap from="robotino_joint_states" to="joint_states" />
 		<remap from="image_raw" to="image"/>
 	</node>
+    <!-- tentative d'activation de la camera pour robotino follower (non fonctionel faute de temps)
+    <arg name="camera"                              default="camera"/>
+    <arg name="publish_tf"                          default="false"/>
+    <arg name="depth_registration"                  default="true"/>
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+        <arg name="camera"                          value="$(arg camera)"/>                                   
+        <arg name="publish_tf"                      value="$(arg publish_tf)"/>                         
+    </include>
+-->
     <node name="robotino_odometry_node" pkg="robotino_node" type="robotino_odometry_node" output="screen">
         <param name="hostname" value="$(arg hostname)" />
     </node>

@@ -6,7 +6,9 @@ project(robotino_msgs)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   std_msgs
+  std_srvs
   message_generation
+  message_runtime
 )
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -52,6 +54,7 @@ add_service_files(
         FILES
         ResetOdometry.srv
         SetEncoderPosition.srv
+	SetFollowState.srv
 )
 
 ## Generate actions in the 'action' folder

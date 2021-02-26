@@ -1,0 +1,8 @@
+prefix=/home/robotino/catkin_ws/devel
+
+Name: robotino_follower
+Description: Description of robotino_follower
+Version: 2.3.7
+Cflags: -I/home/robotino/catkin_ws/devel/include
+Libs: -L${prefix}/lib -lrobotino_follower
+Requires: nodelet roscpp visualization_msgs robotino_msgs depth_image_proc dynamic_reconfigure

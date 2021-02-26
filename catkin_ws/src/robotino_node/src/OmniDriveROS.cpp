@@ -36,7 +36,7 @@ void cmdVelObstacleCallback(const geometry_msgs::TwistConstPtr& msgObstacle)
 	linearObstacle_y = msgObstacle->linear.y;
 	angularObstacle_z = msgObstacle->angular.z;
 
-	//ROS_INFO("[%f]",  angularObstacle_z);
+	//ROS_INFO("[%f]",  linearObstacle_x);
 }
 
 void OmniDriveROS::cmdVelCallback(const geometry_msgs::TwistConstPtr& msg)
@@ -57,7 +57,6 @@ void OmniDriveROS::cmdVelCallback(const geometry_msgs::TwistConstPtr& msg)
 		linear_y = msg->linear.y;
 		angular = msg->angular.z;
 	}
-	
 	if ( fabs( linear_x ) > max_linear_vel_ )
 	{
 		if( linear_x > 0.0 )
@@ -102,7 +101,7 @@ void OmniDriveROS::cmdVelCallback(const geometry_msgs::TwistConstPtr& msg)
 		else
 			angular = -min_angular_vel_;
 	}
-
+	//ROS_INFO("[%f]",  linear_x);
 	setVelocity( linear_x, linear_y, angular);
 }
 

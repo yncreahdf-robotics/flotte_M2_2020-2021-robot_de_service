@@ -73,10 +73,11 @@ find_package(RobotinoAPI2)
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   nav_msgs#   robotino_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   nav_msgs
+   robotino_msgs
+ )
 
 ###################################
 ## catkin specific configuration ##
@@ -90,7 +91,7 @@ find_package(RobotinoAPI2)
 catkin_package(
   INCLUDE_DIRS include
   #LIBRARIES robotino_node
-  CATKIN_DEPENDS image_transport nav_msgs tf message_runtime geometry_msgs std_msgs
+  CATKIN_DEPENDS image_transport nav_msgs tf message_runtime geometry_msgs std_msgs robotino_msgs
 #  DEPENDS system_lib
 )
 

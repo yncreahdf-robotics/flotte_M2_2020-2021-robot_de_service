@@ -1,0 +1,246 @@
+#!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
+import time
+import rospy
+import math
+import tf
+
+import actionlib
+from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from actionlib_msgs.msg import GoalStatus
+from geometry_msgs.msg import Pose, Quaternion
+from tf.transformations import quaternion_from_euler
+
+import test
+############################################################
+### Programme principal à lancer pour démarrer le projet ###
+############################################################
+
+
+###############
+### Imports ###
+###############
+
+# Import des fichiers .py propre au projet
+
+#import FonctionsMQTT
+import mysql.connector
+import IPFinder
+import paho.mqtt.client as mqtt
+
+# Import des librairies exterieures au projet
+
+import time
+import threading
+import Positions
+
+from moveToGoal import MoveToGoal
+from turn import Turn
+
+m = MoveToGoal()
+t = Turn()
+
+desiredPose = []
+position = ""
+
+derniertopic=""
+
+turnAngle = 45
+turnAngle = Quaternion(*(quaternion_from_euler(0, 0, turnAngle*math.pi/180, axes='sxyz')))
+
+##########################
+### Variables globales ###
+##########################
+
+######################
+### Initialisation ###
+######################
+
+
+############
+### Defs ###
+############
+
+
+
+##########################
+### Variables globales ###
+##########################
+
+#	Robot retrieves his own IP
+my_ip=IPFinder.get_my_ip()
+
+#	TCP port used for MQTT
+port = 1883
+
+#	Determines the supervisor's IP using the hosts file
+hosts = open('/etc/hosts','r')
+for line in hosts:
+	try:
+		if line.split()[1] == "supIP":
+			ipsuperviseur = line.split()[0]
+	except IndexError:
+		pass
+
+###	ROBOTS VARIABLES     ###
+type_robot="Robotino"
+etat_robot="libre"
+
+######################
+### Initialisation ###
+######################
+
+
+############
+### Defs ###
+############
+
+def on_connect(client, userdata, flags, rc):
+
+	print("Connected with result code "+str(rc))
+	if rc==0:
+		print("connection ok")
+	else:
+		print("connection no")
+
+
+def on_disconnect(client, userdata, rc):
+
+	print("Client Got Disconnected")
+
+
+def on_message(client, userdata, msg):
+
+	global position
+	global desiredPose
+	global derniertopic
+	global flotte_db
+
+	print("Yes! i receive the message :" , str(msg.payload))
+	#print("message received ", msg.payload.decode("utf-8"))
+        #with open('data.json', 'w') as f:
+        #json.dumps(msg.payload.decode("utf-8"))
+	print("message topic=",msg.topic)
+	#print("message qos=",msg.qos)
+	#print("message retain flag=",msg.retain)
+
+	print(msg.topic.split("/")[0])
+	print(msg.payload.decode("utf-8").split("/")[0])
+	if (msg.topic.split("/")[0]=="Service" and msg.payload.decode("utf-8").split("/")[0]==my_ip):
+		global etat_robot
+		etat_robot="occupe"
+
+		if (msg.topic.split("/")[1]=="Go"):
+			derniertopic=msg.topic.split("/")[2]
+
+			position = msg.payload.decode("utf-8").split("/")[1]
+			cmd_vel = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+			#on cherche les coordonnées de la position donnée
+
+			print(position)
+			pose=Positions.get_Pose(flotte_db,position)
+			print(pose)
+                        m.dernierTopic = derniertopic
+			m.desiredPose = pose[0]
+			m.startMove(True)
+
+		if (msg.topic.split("/")[1]=="Turn"):
+                        t.turnAngle = turnAngle
+			t.startRotate()
+
+
+	if (msg.topic=="Ping/Feedback" and msg.payload.decode("utf-8").split("/")[0]==my_ip):
+		print("boucle feedback")
+		if msg.payload.decode("utf-8").split("/")[1] == "No":
+			print("boucle feedback no")
+			publish(ipsuperviseur, port, "Initialisation/Envoi", my_ip + "/" + type_robot, 2)
+
+			flotte_db=mysql.connector.connect(
+				host=ipsuperviseur,
+				database='flotte_db',
+				user='robot',
+				password='robot'
+			)
+
+
+
+
+
+	
+#Appel d'une fonction qui permet de recevoir un message
+
+def subscribe(ip, port, topic, qos):
+
+	global client
+	client = mqtt.Client()
+
+	client.on_connect = on_connect
+	client.on_message = on_message
+	client.on_disconnect = on_disconnect
+	client.connect(ip,port,65535)
+	client.subscribe(topic, qos)
+	client.loop_start()
+	print("subscribed to "+topic)
+
+
+#Appel d'une fonction qui permet d'envoyer un message
+
+def publish(ip, port, topic, message, qos):
+
+	client2 = mqtt.Client()
+
+	client2.connect(ip,port,65535)
+	client2.loop_start()
+	client2.publish(topic, message, qos)
+	print("message sent on "+topic)
+
+
+def pingRobot():
+
+	threading.Timer(10, pingRobot).start()
+
+	print ("Envoi du ping")
+
+	publish(ipsuperviseur, port, "Robot/Ping", my_ip, 2)
+
+
+def send_etat():
+	publish(ipsuperviseur,port,"Robot/Etat", my_ip+"/"+etat_robot,2)
+
+###################################
+###	PROGRAMME PRINCIPAL	###
+###################################
+
+
+###	CONNECTS TO DATABASE	###
+#       publish his IP and type separated by a / on Initialisation/Envoi
+publish(ipsuperviseur, port, "Initialisation/Envoi", my_ip + "/" + type_robot, 2)
+
+pingRobot()
+
+flotte_db=mysql.connector.connect(
+	host=ipsuperviseur,
+	database='flotte_db',
+	user='robot',
+	password='robot'
+)
+
+#	subscribe to Ordre/Envo - waits for orders
+subscribe(ipsuperviseur, port, "Ping/Feedback", 2)
+
+
+client2 = mqtt.Client()
+
+client2.on_connect = on_connect
+client2.on_message = on_message
+client2.on_disconnect = on_disconnect
+client2.connect(ipsuperviseur,port,60)
+client2.subscribe("Service/#", 2)
+client2.loop_forever()
+print("subscribed to "+"Service/#")
+
+
+
+while(1):
+	time.sleep(10)
+

@@ -45,7 +45,7 @@ void LaserRangeFinderROS::scanEvent(const rec::robotino::api2::LaserRangeFinderR
 	laser_scan_msg_.angle_min = scan.angle_min;
 	laser_scan_msg_.angle_max = scan.angle_max;
 	laser_scan_msg_.angle_increment = scan.angle_increment;
-	laser_scan_msg_.time_increment = scan.time_increment;
+	laser_scan_msg_.time_increment = 0;//scan.time_increment;
 	laser_scan_msg_.scan_time = scan.scan_time;
 	laser_scan_msg_.range_min = scan.range_min;
 	laser_scan_msg_.range_max = scan.range_max;

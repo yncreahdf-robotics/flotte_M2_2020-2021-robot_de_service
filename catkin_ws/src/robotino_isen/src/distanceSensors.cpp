@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	ROS_INFO("Subscribe to distance_sensors");
 	ros::Subscriber sub = n.subscribe("distance_sensors", 1, callback);
 	ROS_INFO("Publish to cmd_vel");
-	pub = n.advertise<geometry_msgs::Twist>("/cmd_vel_", 10);
+	pub = n.advertise<geometry_msgs::Twist>("/cmd_velxxo", 10);
 	ros::spin();
 
 	return 0;
@@ -38,10 +38,17 @@ int main(int argc, char **argv)
 void callback(const sensor_msgs::PointCloudConstPtr &msg)
 {
 	float distance[9];
+	int numeroCapteur;
+	float min;
+	min = distance[0];
 	for (int i = 0; i <= 8; i++)
 	{
 		distance[i] = msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y;
 		distance[i] = sqrt(distance[i]) - 0.2;
+		if (distance[i] < min) {
+			min = distance[i];
+			numeroCapteur = i;
+		}
 		//ROS_INFO("capteur : [%d], distance : [%f]", i, distance[i]);
 	}
 
@@ -51,9 +58,11 @@ void callback(const sensor_msgs::PointCloudConstPtr &msg)
 
 	if (distance[0] < DIST_0 || distance[1] < DIST_1 || distance[8] < DIST_1 || distance[2] < DIST_2 || distance[7] < DIST_2)
 	{
-		cmd_x = -0.3;
-		cmd_y = 0.4;
-		cmd_z = 1;
+		//cmd_x = -0.3;
+		//cmd_y = 0.4;
+		//cmd_z = 1;//0;
+                cmd_x = 1 * cos( 3.14 + (numeroCapteur * 2 * 3.14 / 9 ) );
+                cmd_y = 1 * sin( 3.14 + (numeroCapteur * 2 * 3.14 / 9 ) );
 
 		if (distance[1] < 0.25 && distance[8] < 0.25)
 		{

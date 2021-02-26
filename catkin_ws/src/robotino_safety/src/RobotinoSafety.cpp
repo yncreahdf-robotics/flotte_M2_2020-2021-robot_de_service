@@ -135,8 +135,8 @@ void RobotinoSafety::bumperCallback(const std_msgs::BoolConstPtr& msg)
 {
 	if( msg->data )
 	{
-		ROS_ERROR("Bumper hit! Shutting down node!");
-		ros::shutdown();
+		//ROS_ERROR("Bumper hit! Shutting down node!");
+		//ros::shutdown();
 		return;
 	}
 }

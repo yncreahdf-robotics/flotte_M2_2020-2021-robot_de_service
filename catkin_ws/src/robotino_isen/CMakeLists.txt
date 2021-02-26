@@ -4,6 +4,8 @@ project(robotino_isen)
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
+
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -16,6 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   nav_msgs
   tf
+
 )
 
 ## System dependencies are found with CMake's conventions
@@ -172,14 +175,15 @@ include_directories(
 ## in contrast to setup.py, you can choose the destination
  catkin_install_python(PROGRAMS
    scripts/square.py
+   scripts/qr.py
    #scripts/initLocalization.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 
 add_executable(distanceSensors src/distanceSensors.cpp)
 target_link_libraries(distanceSensors ${catkin_LIBRARIES})
-add_executable(AnnotatedPose_server src/AnnotatedPose.cpp)
-target_link_libraries(AnnotatedPose_server ${catkin_LIBRARIES})
-add_dependencies(AnnotatedPose_server robotino_isen_gencpp)
+add_executable(bumper src/bumper.cpp)
+target_link_libraries(bumper ${catkin_LIBRARIES})
 
-
+add_executable(foncerobot src/foncerobot.cpp)
+target_link_libraries(foncerobot ${catkin_LIBRARIES})
