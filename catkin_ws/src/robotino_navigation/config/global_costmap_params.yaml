@@ -1,0 +1,10 @@
+
+global_costmap:
+  enabled: true
+  global_frame: /map
+  robot_base_frame: base_link
+  update_frequency: 5.0
+  static_map: true
+  resolution: 0.02
+  transform_tolerance: 5.0
+

@@ -1,0 +1,7 @@
+<library path="lib/librobotino_follower">
+  <class name="robotino_follower/RobotinoFollower" type="robotino_follower::RobotinoFollower" base_class_type="nodelet::Nodelet">
+    <description>
+      The robotino people follower node.
+    </description>
+  </class>
+</library> 

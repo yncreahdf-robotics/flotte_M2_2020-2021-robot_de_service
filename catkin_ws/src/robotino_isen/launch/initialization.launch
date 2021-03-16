@@ -1,0 +1,13 @@
+<launch>
+
+<include file="$(find robotino_node)/launch/robotino_node.launch" launch-prefix="bash -c 'sleep 1; $0 $@' " />
+
+
+<include file="$(find robotino_navigation)/launch/map_server.launch">
+    <arg name="map_file" value="$(arg map_file)" />
+</include>
+
+<include file="$(find superviseur)/launch/localization.launch" launch-prefix="bash -c 'sleep 5; $0 $@' "/>
+
+
+</launch>

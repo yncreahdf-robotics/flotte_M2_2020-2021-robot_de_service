@@ -1,0 +1,83 @@
+//#include "rec/robotino/api2/DistanceSensorArray.h"
+
+#include <ros/ros.h>
+#include <sensor_msgs/PointCloud.h>
+#include <geometry_msgs/Twist.h>
+
+void callback(const sensor_msgs::PointCloudConstPtr&);
+
+geometry_msgs::Twist cmd;
+ros::Publisher pub;
+
+
+#define DIST_ROTATION 0.40
+#define DIST_BREAK 0.40
+
+#define K_ROTATION 6
+#define K_BREAK 4
+
+
+int main(int argc, char **argv)
+{
+	ros::init(argc, argv, "obstacleAvoidance");
+
+	ros::NodeHandle n;
+
+//	geometry_msgs::Twist cmd;
+
+	ros::Subscriber sub = n.subscribe("distance_sensors", 1,  callback);
+	pub = n.advertise<geometry_msgs::Twist>("/cmd_vel_", 10);
+	//pub.publish(cmd);
+	ros::spin();
+	
+	return 0;
+
+}
+
+void callback(const sensor_msgs::PointCloudConstPtr& msg)
+{
+        //ROS_INFO("I recievd [%s]", msg->channels[0]);
+//      geometry_msgs::Twist cmd;
+
+	float distance[9];
+        for(int i = 0; i <= 8; i++)
+        {
+		distance[i] = msg->points[i].x * msg->points[i].x + msg->points[i].y * msg->points[i].y;
+		distance[i] = sqrt(distance[i]) - 0.2;
+		ROS_INFO("capteur : [%d], distance : [%f]", i, distance[i]);
+        }
+
+	float cmd_rotation = 0;
+	float cmd_break = 1;
+
+	if(distance[0] < DIST_ROTATION || distance[1] < DIST_ROTATION || distance[8] < DIST_ROTATION)
+        {
+		cmd_break = 0;
+
+		
+ 	        cmd_rotation = (distance[0] + distance[1] + distance[8]) / DIST_ROTATION;
+       	       cmd_rotation = K_ROTATION * (1.0 - cmd_rotation);
+
+	        if(distance[7] > distance[2])
+        	{
+                	 cmd_rotation = -cmd_rotation;
+       		}
+		else if(distance[7] == distance[2]
+		{
+			cmd_rotation = -cmd_rotation;
+		}
+		
+		
+
+        }
+        cmd.linear.x = cmd_break;
+        cmd.linear.y = cmd_rotation;
+        cmd.angular.z = 0;
+
+        ROS_INFO("cmd [%f]", cmd_rotation);
+        ROS_INFO("dist [%f]", distance[0]);
+
+        pub.publish(cmd);
+
+}
+
