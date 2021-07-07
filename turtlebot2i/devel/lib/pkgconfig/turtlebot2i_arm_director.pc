@@ -1,0 +1,8 @@
+prefix=/home/turtlebot/turtlebot2i/devel
+
+Name: turtlebot2i_arm_director
+Description: Description of turtlebot2i_arm_director
+Version: 0.1.0
+Cflags: -I/home/turtlebot/turtlebot2i/devel/include
+Libs: -L${prefix}/lib 
+Requires: moveit_core moveit_ros_planning_interface roscpp std_msgs

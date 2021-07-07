@@ -1,0 +1,8 @@
+prefix=/home/turtlebot/turtlebot2i/devel
+
+Name: turtlebot2i_bringup
+Description: Description of turtlebot2i_bringup
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

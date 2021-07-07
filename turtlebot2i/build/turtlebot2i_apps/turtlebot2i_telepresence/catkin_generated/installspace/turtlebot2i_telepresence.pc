@@ -1,0 +1,8 @@
+prefix=/home/turtlebot/turtlebot2i/install
+
+Name: turtlebot2i_telepresence
+Description: Description of turtlebot2i_telepresence
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

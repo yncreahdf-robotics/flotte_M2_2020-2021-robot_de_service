@@ -1,0 +1,8 @@
+prefix=/home/turtlebot/turtlebot2i/devel
+
+Name: turtlebot2i_description
+Description: Description of turtlebot2i_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: urdf xacro

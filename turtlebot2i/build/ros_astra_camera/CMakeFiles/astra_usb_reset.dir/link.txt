@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/astra_usb_reset.dir/src/usb_reset.c.o  -o /home/turtlebot/turtlebot2i/devel/lib/astra_camera/astra_usb_reset  -L/home/turtlebot/turtlebot2i/src/ros_astra_camera/include/openni2_redist/x64 -rdynamic 

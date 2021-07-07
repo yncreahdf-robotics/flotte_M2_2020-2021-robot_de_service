@@ -1,0 +1,8 @@
+prefix=/home/turtlebot/turtlebot2i/devel
+
+Name: rgbd_launch
+Description: Description of rgbd_launch
+Version: 2.1.3
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
