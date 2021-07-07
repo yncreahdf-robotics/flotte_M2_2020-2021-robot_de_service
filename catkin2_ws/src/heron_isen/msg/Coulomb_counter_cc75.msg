@@ -1,0 +1,6 @@
+ValueUnitInt percentage
+ValueUnitFloat voltage
+ValueUnitFloat capacity
+ValueUnitFloat current
+ValueUnitInt remaining_time
+ValueUnitFloat power
